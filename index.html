@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<style type="text/css" style="display: none !important;">
+textarea {
+	width: 80%;
+	margin-left:10%;
+	height: 120px;
+	border: 3px solid #cccccc;
+	padding: 5px;
+	font-family: Tahoma, sans-serif;
+	background-image: url(bg.gif);
+	background-position: bottom right;
+	background-repeat: no-repeat;
+}
+h3,h2{
+	margin-left:10%;
+	margin-bottom:-10px;
+	
+	}
+	button,p{
+	margin-left:10%;
+	
+	}
+	textarea#xmpt{
+	width: 80%;
+	margin-left:10%;
+	height: 320px;
+	border: 3px solid #cccccc;
+	padding: 5px;
+	font-family: Tahoma, sans-serif;
+	background-image: url(bg.gif);
+	background-position: bottom right;
+	background-repeat: no-repeat;
+	}
+	
+	
+	input {
+	width: 80%;
+	margin-left:10%;
+		
+	border: 3px solid #cccccc;
+	padding: 5px;
+	font-family: Tahoma, sans-serif;
+	background-image: url(bg.gif);
+	background-position: bottom right;
+	background-repeat: no-repeat;
+}
+</style>
+
+
+
+<h2 style = "margin-bottom:	30px">Replacing automator</h2>
+
+<h3>Text to edit:</h3><br>
+<textarea id="myTextarea" onfocus="setbg('#e5fff3');" onblur="setbg('white')">
+Type text here</textarea>
+<br/>
+
+<h3>List of values:</h3><br>
+<textarea id="list_of_v" onfocus=" setbg('#e5fff3');" onblur="setbg('white')">
+Type list of values here</textarea>
+<br/>
+
+<h3>Name of character</h3><br>
+<input type="text" id="char_to_replace" value="Some text...">
+
+<br/>
+<br/>
+
+<button  class="btn btn-default" type="button" onclick="myFunction()" style="width:100px">Try it</button>
+
+<br/>
+<br/>
+<h3>Output</h3><br>
+<br/>
+ 
+ <textarea id="xmpt" onfocus="setbg('#e5fff3');" onblur="setbg('white')"> </textarea>
+ 
+<script>
+
+function setbg(color)
+{
+document.getElementById("styled").style.background=color
+}
+
+
+function myFunction() {
+   
+	
+	var list_of_values = document.getElementById("list_of_v").value;
+		var text_to_edit =  document.getElementById("myTextarea").value;
+		var output_var = "";
+    var str_array = list_of_values.split(',');
+
+		for(var i = 0; i < str_array.length; i++) {
+		   // Trim the excess whitespace.
+		   str_array[i] = str_array[i].replace(/^\s*/, "").replace(/\s*$/, "");
+		   // Add additional code here, such as:
+		   var find = document.getElementById("char_to_replace").value;
+				var re = new RegExp(find, 'g');
+
+			
+		   output_var = output_var.concat( text_to_edit.replace( re, str_array[i])+"\n \n")
+		   
+		}
+		
+		
+    document.getElementById("xmpt").value  = output_var;
+}
+</script>
+
+</body>
+</html>
